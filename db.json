@@ -1,34 +1,34 @@
 {
-    "tasks": [
-        {
-            "id" : 1,
-            "title": "Get a job!",
-            "done": false
-        },
-        {
-            "id" : 2,
-            "title": "Make a sandwich!",
-            "done": true
-        },
-        {
-            "id" : 3,
-            "title": "Be happy!",
-            "done": false
-        },
-        {
-            "id" : 4,
-            "title": "Have fulfilling life!",
-            "done": false
-        },
-        {
-            "id" : 5,
-            "title": "Random thing!",
-            "done": true
-        },
-        {
-            "id" : 6,
-            "title": "Random big thing",
-            "done": true
-        }
-    ]
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Get a job!",
+      "done": false
+    },
+    {
+      "id": 2,
+      "title": "Make a sandwich!",
+      "done": false
+    },
+    {
+      "id": 3,
+      "title": "Be happy!",
+      "done": false
+    },
+    {
+      "id": 4,
+      "title": "Have fulfilling life!",
+      "done": false
+    },
+    {
+      "id": 5,
+      "title": "Random thing!",
+      "done": false
+    },
+    {
+      "id": 6,
+      "title": "Random big thing",
+      "done": false
+    }
+  ]
 }
