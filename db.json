@@ -1,14 +1,9 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "title": "Get a job!",
-      "done": false
-    },
-    {
       "id": 2,
       "title": "Make a sandwich!",
-      "done": false
+      "done": true
     },
     {
       "id": 3,
@@ -23,7 +18,7 @@
     {
       "id": 5,
       "title": "Random thing!",
-      "done": false
+      "done": true
     },
     {
       "id": 6,
