@@ -13,7 +13,7 @@ import { Task } from "../../types";
 
 const useStyles = makeStyles({
   card: {
-    marginBottom: 10,
+    marginBottom: 15,
     width: "100%",
   },
   cardHeader: {
@@ -71,7 +71,11 @@ const TaskCard: React.FC<Props> = ({ task, deleteTask, updateTask }) => {
           onChange={completeTask}
           inputProps={{ "aria-label": "complete task checkbox" }}
         />
-        <Typography className={classes.completeText} variant="h6">
+        <Typography
+          className={classes.completeText}
+          variant="h6"
+          color={task.done ? "secondary" : "textPrimary"}
+        >
           {task.done ? "Completed" : "To be done"}
         </Typography>
       </CardActions>

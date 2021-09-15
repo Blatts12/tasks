@@ -7,7 +7,7 @@ import useTasks from "./useTasks";
 
 const useStyles = makeStyles({
   taskList: {
-    marginTop: 100,
+    marginTop: 90,
   },
 });
 
@@ -24,7 +24,12 @@ const TaskList: React.FC = () => {
       alignItems="center"
     >
       {tasks.map((task) => (
-        <TaskCard task={task} deleteTask={deleteTask} updateTask={updateTask} />
+        <TaskCard
+          task={task}
+          deleteTask={deleteTask}
+          updateTask={updateTask}
+          key={task.id}
+        />
       ))}
       {loading && <CircularProgress />}
       {error && (
