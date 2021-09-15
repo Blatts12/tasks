@@ -1,6 +1,7 @@
 import { Container, createTheme, CssBaseline } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import Navbar from "./Navbar";
+import TaskList from "./Task/TaskList";
 
 const theme = createTheme({
   palette: {
@@ -14,6 +15,7 @@ function App() {
       <CssBaseline />
       <Container maxWidth="sm">
         <Navbar title="Tasks" />
+        <TaskList />
       </Container>
     </ThemeProvider>
   );

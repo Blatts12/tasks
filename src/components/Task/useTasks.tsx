@@ -1,70 +1,34 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Task, TaskSort } from "../../types";
+import { Task } from "../../types";
 
-const getSortingString = (sortingType: TaskSort) => {
-  switch (sortingType) {
-    case TaskSort.ID_ASC: {
-      return "_sort=id&_order=asc";
-    }
-    case TaskSort.ID_DESC: {
-      return "_sort=id&_order=desc";
-    }
-    case TaskSort.DONE_ASC: {
-      return "_sort=done&_order=asc";
-    }
-    case TaskSort.DONE_DESC: {
-      return "_sort=done&_order=desc";
-    }
-    default: {
-      return "_sort=id&_order=desc";
-    }
-  }
-};
-
-export default function useTasks(
-  limit: number = 5,
-  sortingType: TaskSort = TaskSort.ID_DESC,
-  infinityScroll: boolean = false
-) {
-  const [pageNumber, setPageNumber] = useState(1);
+export default function useTasks(sortByDone: boolean = false) {
   const [loading, setLoading] = useState(true);
-  const [hasMore, setHasMore] = useState(false);
   const [error, setError] = useState(false);
   const [needRefetch, setNeedRefetch] = useState(false);
   const [tasks, setTasks] = useState<Array<Task>>([]);
 
   useEffect(() => {
     setTasks([]);
-    setPageNumber(1);
   }, [needRefetch]);
 
   useEffect(() => {
     setLoading(true);
     setError(false);
 
-    const fetchUrl = `http://localhost:3001/tasks?_page=${pageNumber}&_limit=${limit}&${getSortingString(
-      sortingType
-    )}`;
+    const fetchUrl = "http://localhost:3001/tasks";
 
     axios
       .get(fetchUrl)
       .then((res) => {
-        if (infinityScroll) {
-          setTasks((prevTasks) =>
-            Array.from(new Set([...prevTasks, ...res.data]))
-          );
-        } else {
-          setTasks([...res.data]);
-        }
-        setHasMore(res.data.length > 0);
+        setTasks([...res.data]);
         setLoading(false);
         setNeedRefetch(false);
       })
       .catch((e) => {
         setError(true);
       });
-  }, [pageNumber, limit, sortingType, infinityScroll, needRefetch]);
+  }, [needRefetch]);
 
   const createTask = (task: Task) => {
     setError(false);
@@ -113,13 +77,10 @@ export default function useTasks(
 
   return {
     tasks,
-    pageNumber,
-    setPageNumber,
     createTask,
     updateTask,
     deleteTask,
     loading,
     error,
-    hasMore,
   };
 }
