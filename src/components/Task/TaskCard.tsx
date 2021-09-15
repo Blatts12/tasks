@@ -1,5 +1,4 @@
 import {
-  Box,
   Card,
   CardActions,
   CardHeader,
@@ -15,17 +14,22 @@ import { Task } from "../../types";
 const useStyles = makeStyles({
   card: {
     marginBottom: 10,
+    width: "100%",
   },
   cardHeader: {
-    paddingTop: 4,
-    paddingBottom: 8,
+    padding: "4px 0 0 8px",
   },
   cardActions: {
-    paddingTop: 0,
+    padding: 0,
     height: 40,
+    display: "flex",
+    justifyContent: "space-between",
   },
   completeCheckbox: {
     transform: "scale(1.25)",
+  },
+  completeText: {
+    paddingRight: 8,
   },
 });
 
@@ -67,7 +71,7 @@ const TaskCard: React.FC<Props> = ({ task, deleteTask, updateTask }) => {
           onChange={completeTask}
           inputProps={{ "aria-label": "complete task checkbox" }}
         />
-        <Typography variant="h6">
+        <Typography className={classes.completeText} variant="h6">
           {task.done ? "Completed" : "To be done"}
         </Typography>
       </CardActions>

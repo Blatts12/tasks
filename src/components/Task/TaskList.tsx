@@ -1,4 +1,5 @@
-import { Box } from "@material-ui/core";
+import { Box, CircularProgress, Typography } from "@material-ui/core";
+import { Error } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import TaskCard from "./TaskCard";
@@ -16,10 +17,22 @@ const TaskList: React.FC = () => {
     useTasks();
 
   return (
-    <Box className={classes.taskList} display="flex" flexDirection="column">
+    <Box
+      className={classes.taskList}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+    >
       {tasks.map((task) => (
         <TaskCard task={task} deleteTask={deleteTask} updateTask={updateTask} />
       ))}
+      {loading && <CircularProgress />}
+      {error && (
+        <>
+          <Error color="error" fontSize="large" />
+          <Typography variant="h5"> Error happend </Typography>
+        </>
+      )}
     </Box>
   );
 };
