@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import { Theme } from "@material-ui/core/styles";
 import { createStyles, makeStyles } from "@material-ui/styles";
-import { findByLabelText } from "@testing-library/react";
 import React, { useState } from "react";
 import { Task } from "../../types";
 
@@ -75,6 +74,7 @@ const TaskCreateModal: React.FC<Props> = ({ createTask, openCreateRef }) => {
     };
     createTask(task);
     setTitleError(false);
+    setTaskTitle("");
     handleClose();
   };
 
