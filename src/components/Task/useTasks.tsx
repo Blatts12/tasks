@@ -30,7 +30,7 @@ export default function useTasks(sortByDone: boolean = false) {
 
   useEffect(() => {
     const fetchUrl = `http://localhost:3001/tasks${
-      sortByDone ? "?_sort=done&_order=desc" : ""
+      sortByDone ? "?_sort=done,id&_order=desc,desc" : "?_sort=id&_order=desc"
     }`;
     fetchTasks(fetchUrl);
   }, [needRefetch, sortByDone]);
