@@ -26,8 +26,11 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
     },
     titleInput: {
-      width: 400,
       marginTop: 10,
+      width: 400,
+      [theme.breakpoints.down("sm")]: {
+        width: 275,
+      },
     },
     submitButton: {
       marginTop: 20,

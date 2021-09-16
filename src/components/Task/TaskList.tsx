@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
-import { CircularProgress, IconButton, Typography } from "@material-ui/core";
+import {
+  CircularProgress,
+  IconButton,
+  Tooltip,
+  Typography,
+} from "@material-ui/core";
 import { Theme } from "@material-ui/core/styles";
 import { AddCircle, Error, FilterList } from "@material-ui/icons";
 import { createStyles, makeStyles } from "@material-ui/styles";
@@ -28,7 +33,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const TaskList: React.FC = () => {
   const classes = useStyles();
-  const openFilters = useRef<() => void>(null);
   const openCreate = useRef<() => void>(null);
   const [sortTasks, setSortTasks] = useState(false);
   const { tasks, createTask, updateTask, deleteTask, loading, error } =
@@ -39,17 +43,21 @@ const TaskList: React.FC = () => {
   };
 
   const handleFiltersOpen = () => {
-    if (openFilters.current) openFilters.current();
+    setSortTasks(!sortTasks);
   };
 
   const ActionButtons = (
     <>
-      <IconButton onClick={handleFiltersOpen}>
-        <FilterList />
-      </IconButton>
-      <IconButton onClick={handleCreateOpen}>
-        <AddCircle />
-      </IconButton>
+      <Tooltip title="Done First">
+        <IconButton onClick={handleFiltersOpen}>
+          <FilterList color={sortTasks ? "secondary" : "action"} />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Create Task">
+        <IconButton onClick={handleCreateOpen}>
+          <AddCircle />
+        </IconButton>
+      </Tooltip>
     </>
   );
 
