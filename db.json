@@ -23,12 +23,12 @@
     {
       "id": 5,
       "title": "Groove",
-      "done": true
+      "done": false
     },
     {
       "id": 6,
       "title": "Bigga Than Ben",
-      "done": false
+      "done": true
     },
     {
       "id": 7,
@@ -38,7 +38,7 @@
     {
       "id": 8,
       "title": "Lord of Illusions",
-      "done": false
+      "done": true
     },
     {
       "id": 9,
@@ -53,12 +53,12 @@
     {
       "id": 11,
       "title": "Sweet Rush (Tatarak)",
-      "done": false
+      "done": true
     },
     {
       "id": 12,
       "title": "One Tough Cop",
-      "done": true
+      "done": false
     },
     {
       "id": 13,
@@ -68,7 +68,7 @@
     {
       "id": 14,
       "title": "List of Adrian Messenger, The",
-      "done": true
+      "done": false
     },
     {
       "id": 15,
@@ -88,12 +88,12 @@
     {
       "id": 18,
       "title": "Silmido",
-      "done": false
+      "done": true
     },
     {
       "id": 19,
       "title": "Chitty Chitty Bang Bang",
-      "done": false
+      "done": true
     },
     {
       "id": 20,
@@ -103,7 +103,7 @@
     {
       "id": 21,
       "title": "Fright Night",
-      "done": false
+      "done": true
     },
     {
       "id": 22,
@@ -153,22 +153,22 @@
     {
       "id": 31,
       "title": "Greystone Park",
-      "done": false
+      "done": true
     },
     {
       "id": 32,
       "title": "Festival in Cannes",
-      "done": true
+      "done": false
     },
     {
       "id": 33,
       "title": "Triumph of the Will (Triumph des Willens)",
-      "done": false
+      "done": true
     },
     {
       "id": 34,
       "title": "In the Park",
-      "done": true
+      "done": false
     },
     {
       "id": 35,
@@ -188,7 +188,7 @@
     {
       "id": 38,
       "title": "Passengers",
-      "done": false
+      "done": true
     },
     {
       "id": 39,
@@ -268,7 +268,7 @@
     {
       "id": 54,
       "title": "Reach the Rock",
-      "done": false
+      "done": true
     },
     {
       "id": 55,
@@ -328,7 +328,7 @@
     {
       "id": 66,
       "title": "Satan's Sword 3: The Final Chapter (Daibosatsu toge: Kanketsu-hen)",
-      "done": false
+      "done": true
     },
     {
       "id": 67,
@@ -2263,7 +2263,7 @@
     {
       "id": 453,
       "title": "5x2",
-      "done": true
+      "done": false
     },
     {
       "id": 454,
@@ -2278,7 +2278,7 @@
     {
       "id": 456,
       "title": "Night of the Living Dead",
-      "done": false
+      "done": true
     },
     {
       "id": 457,

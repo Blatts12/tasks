@@ -1,4 +1,4 @@
-import { Container, createTheme, CssBaseline } from "@material-ui/core";
+import { createTheme, CssBaseline } from "@material-ui/core";
 import { green, red } from "@material-ui/core/colors";
 import { ThemeProvider } from "@material-ui/styles";
 import Navbar from "./Navbar";
@@ -20,10 +20,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="sm">
+      <div>
         <Navbar title="Tasks" />
         <TaskList />
-      </Container>
+      </div>
     </ThemeProvider>
   );
 }

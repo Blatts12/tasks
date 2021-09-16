@@ -6,32 +6,46 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
+import { Theme } from "@material-ui/core/styles";
 import { Delete } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { createStyles, makeStyles } from "@material-ui/styles";
 import React from "react";
 import { Task } from "../../types";
 
-const useStyles = makeStyles({
-  card: {
-    marginBottom: 15,
-    width: "100%",
-  },
-  cardHeader: {
-    padding: "4px 0 0 8px",
-  },
-  cardActions: {
-    padding: 0,
-    height: 40,
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  completeCheckbox: {
-    transform: "scale(1.25)",
-  },
-  completeText: {
-    paddingRight: 8,
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      margin: "auto",
+      marginTop: 10,
+      marginBottom: 5,
+      width: "50%",
+      [theme.breakpoints.down("lg")]: {
+        width: "60%",
+      },
+      [theme.breakpoints.down("md")]: {
+        width: "70%",
+      },
+      [theme.breakpoints.down("sm")]: {
+        width: "80%",
+      },
+    },
+    header: {
+      padding: "4px 0 0 8px",
+    },
+    actions: {
+      padding: 0,
+      height: 40,
+      display: "flex",
+      justifyContent: "space-between",
+    },
+    completeCheckbox: {
+      transform: "scale(1.25)",
+    },
+    completeText: {
+      paddingRight: 8,
+    },
+  })
+);
 
 interface Props {
   task: Task;
@@ -51,9 +65,9 @@ const TaskCard: React.FC<Props> = ({ task, deleteTask, updateTask }) => {
   };
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.root}>
       <CardHeader
-        className={classes.cardHeader}
+        className={classes.header}
         title={task.title}
         action={
           <IconButton
@@ -64,7 +78,7 @@ const TaskCard: React.FC<Props> = ({ task, deleteTask, updateTask }) => {
           </IconButton>
         }
       />
-      <CardActions className={classes.cardActions}>
+      <CardActions className={classes.actions}>
         <Checkbox
           className={classes.completeCheckbox}
           checked={task.done}

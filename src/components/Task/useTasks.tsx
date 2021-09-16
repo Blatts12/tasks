@@ -26,6 +26,7 @@ export default function useTasks(sortByDone: boolean = false) {
         setNeedRefetch(false);
       })
       .catch((e) => {
+        setLoading(false);
         setError(true);
       });
   }, [needRefetch]);
