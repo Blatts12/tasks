@@ -8,7 +8,7 @@
     {
       "id": 2,
       "title": "Trilogy of Terror II",
-      "done": true
+      "done": false
     },
     {
       "id": 3,
@@ -58,7 +58,7 @@
     {
       "id": 12,
       "title": "One Tough Cop",
-      "done": false
+      "done": true
     },
     {
       "id": 13,
@@ -108,7 +108,7 @@
     {
       "id": 22,
       "title": "Clownhouse",
-      "done": true
+      "done": false
     },
     {
       "id": 23,
@@ -453,7 +453,7 @@
     {
       "id": 91,
       "title": "The Halloween That Almost Wasn't",
-      "done": true
+      "done": false
     },
     {
       "id": 92,
@@ -663,7 +663,7 @@
     {
       "id": 133,
       "title": "Farmer's Wife, The",
-      "done": true
+      "done": false
     },
     {
       "id": 134,

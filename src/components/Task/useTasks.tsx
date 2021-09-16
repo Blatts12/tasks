@@ -12,12 +12,9 @@ export default function useTasks(sortByDone: boolean = false) {
     setTasks([]);
   }, [needRefetch]);
 
-  useEffect(() => {
+  const fetchTasks = (fetchUrl: string) => {
     setLoading(true);
     setError(false);
-
-    const fetchUrl = "http://localhost:3001/tasks";
-
     axios
       .get(fetchUrl)
       .then((res) => {
@@ -29,7 +26,14 @@ export default function useTasks(sortByDone: boolean = false) {
         setLoading(false);
         setError(true);
       });
-  }, [needRefetch]);
+  };
+
+  useEffect(() => {
+    const fetchUrl = `http://localhost:3001/tasks${
+      sortByDone ? "?_sort=done&_order=desc" : ""
+    }`;
+    fetchTasks(fetchUrl);
+  }, [needRefetch, sortByDone]);
 
   const createTask = (task: Task) => {
     setError(false);
@@ -45,6 +49,10 @@ export default function useTasks(sortByDone: boolean = false) {
       });
   };
 
+  const consoleEveryDoneTask = () => {
+    console.log(tasks.filter((task) => task.done));
+  };
+
   const updateTask = (task: Task) => {
     setError(false);
     const putUrl = `http://localhost:3001/tasks/${task.id}`;
@@ -56,6 +64,8 @@ export default function useTasks(sortByDone: boolean = false) {
         const newTasks = Array.from(tasks);
         newTasks[taskIndex] = { ...res.data };
         setTasks(newTasks);
+
+        consoleEveryDoneTask();
       })
       .catch((e) => {
         setError(true);

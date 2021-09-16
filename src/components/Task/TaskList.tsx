@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CircularProgress, Typography } from "@material-ui/core";
 import { Theme } from "@material-ui/core/styles";
 import { Error } from "@material-ui/icons";
@@ -26,8 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const TaskList: React.FC = () => {
   const classes = useStyles();
+  const [sortTasks, setSortTasks] = useState(false);
   const { tasks, createTask, updateTask, deleteTask, loading, error } =
-    useTasks();
+    useTasks(sortTasks);
 
   return (
     <div className={classes.root}>
