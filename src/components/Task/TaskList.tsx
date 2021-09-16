@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { CircularProgress, Typography } from "@material-ui/core";
+import React, { useRef, useState } from "react";
+import { CircularProgress, IconButton, Typography } from "@material-ui/core";
 import { Theme } from "@material-ui/core/styles";
-import { Error } from "@material-ui/icons";
+import { AddCircle, Error, FilterList } from "@material-ui/icons";
 import { createStyles, makeStyles } from "@material-ui/styles";
 import TaskCard from "./TaskCard";
 import useTasks from "./useTasks";
 import { Virtuoso } from "react-virtuoso";
+import Navbar from "../common/Navbar";
+import TaskCreateModal from "./TaskCreateModal";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,34 +28,72 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const TaskList: React.FC = () => {
   const classes = useStyles();
+  const openFilters = useRef<() => void>(null);
+  const openCreate = useRef<() => void>(null);
   const [sortTasks, setSortTasks] = useState(false);
   const { tasks, createTask, updateTask, deleteTask, loading, error } =
     useTasks(sortTasks);
 
-  return (
-    <div className={classes.root}>
-      {loading && (
-        <div className={classes.infoContainer}>
-          <CircularProgress />{" "}
-        </div>
-      )}
+  const handleCreateOpen = () => {
+    if (openCreate.current) openCreate.current();
+  };
+
+  const handleFiltersOpen = () => {
+    if (openFilters.current) openFilters.current();
+  };
+
+  const ActionButtons = (
+    <>
+      <IconButton onClick={handleFiltersOpen}>
+        <FilterList />
+      </IconButton>
+      <IconButton onClick={handleCreateOpen}>
+        <AddCircle />
+      </IconButton>
+    </>
+  );
+
+  const ErrorContainer = (
+    <>
       {error && (
         <div className={classes.infoContainer}>
           <Error color="error" fontSize="large" />
           <Typography variant="h5">Error happend</Typography>
         </div>
       )}
-      <Virtuoso
-        totalCount={tasks.length}
-        itemContent={(index) => (
-          <TaskCard
-            task={tasks[index]}
-            deleteTask={deleteTask}
-            updateTask={updateTask}
-          />
-        )}
-      />
-    </div>
+    </>
+  );
+
+  const LoadingContainer = (
+    <>
+      {loading && (
+        <div className={classes.infoContainer}>
+          <CircularProgress />
+        </div>
+      )}
+    </>
+  );
+
+  return (
+    <>
+      <Navbar title="Tasks" buttons={ActionButtons} />
+      <TaskCreateModal createTask={createTask} openCreateRef={openCreate} />
+      <div className={classes.root}>
+        {LoadingContainer}
+        {ErrorContainer}
+
+        <Virtuoso
+          totalCount={tasks.length}
+          itemContent={(index) => (
+            <TaskCard
+              task={tasks[index]}
+              deleteTask={deleteTask}
+              updateTask={updateTask}
+            />
+          )}
+        />
+      </div>
+    </>
   );
 };
 

@@ -1,0 +1,109 @@
+import {
+  Box,
+  Button,
+  Modal,
+  Paper,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { Theme } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/styles";
+import { findByLabelText } from "@testing-library/react";
+import React, { useState } from "react";
+import { Task } from "../../types";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    paper: {
+      display: "flex",
+      flexDirection: "column",
+      padding: 16,
+    },
+    titleInput: {
+      width: 400,
+      marginTop: 10,
+    },
+    submitButton: {
+      marginTop: 20,
+    },
+  })
+);
+
+interface Props {
+  createTask: (task: Task) => void;
+  openCreateRef: React.MutableRefObject<(() => void) | null>;
+}
+
+const TaskCreateModal: React.FC<Props> = ({ createTask, openCreateRef }) => {
+  const [open, setOpen] = useState(false);
+  const [taskTitle, setTaskTitle] = useState("");
+  const [titleError, setTitleError] = useState(false);
+  const classes = useStyles();
+
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskTitle(event.target.value);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  openCreateRef.current = handleOpen;
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const title = taskTitle.trim();
+    if (title === "") {
+      setTitleError(true);
+      return;
+    }
+
+    const task = {
+      id: 0,
+      title,
+      done: false,
+    };
+    createTask(task);
+    setTitleError(false);
+    handleClose();
+  };
+
+  return (
+    <Modal open={open} onClose={handleClose}>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        width="100%"
+        height="100vh"
+      >
+        <Paper elevation={4} className={classes.paper}>
+          <Typography variant="h6">Create Task</Typography>
+          <TextField
+            required
+            variant="outlined"
+            label="Title"
+            onChange={handleTitleChange}
+            value={taskTitle}
+            error={titleError}
+            className={classes.titleInput}
+          />
+          <Button
+            variant="contained"
+            type="submit"
+            className={classes.submitButton}
+          >
+            Add
+          </Button>
+        </Paper>
+      </Box>
+    </Modal>
+  );
+};
+
+export default TaskCreateModal;
