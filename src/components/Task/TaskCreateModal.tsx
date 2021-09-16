@@ -14,10 +14,17 @@ import { Task } from "../../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
     paper: {
+      padding: 16,
+    },
+    taskForm: {
       display: "flex",
       flexDirection: "column",
-      padding: 16,
     },
     titleInput: {
       width: 400,
@@ -72,17 +79,13 @@ const TaskCreateModal: React.FC<Props> = ({ createTask, openCreateRef }) => {
   };
 
   return (
-    <Modal open={open} onClose={handleClose}>
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        width="100%"
-        height="100vh"
-      >
-        <Paper elevation={4} className={classes.paper}>
+    <Modal open={open} onClose={handleClose} className={classes.root}>
+      <Paper elevation={4} className={classes.paper}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          className={classes.taskForm}
+        >
           <Typography variant="h6">Create Task</Typography>
           <TextField
             required
@@ -100,8 +103,8 @@ const TaskCreateModal: React.FC<Props> = ({ createTask, openCreateRef }) => {
           >
             Add
           </Button>
-        </Paper>
-      </Box>
+        </Box>
+      </Paper>
     </Modal>
   );
 };
